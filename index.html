@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="nl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budgetcoach Eveline | Meer grip op je geld. Meer rust in je leven.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Fredoka (Títulos - estilo Hug Shak) e Inter (Texto - estilo Frutiger) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"> 
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        donkergroen: {
+                            DEFAULT: '#447568',
+                            dark: '#33594f',
+                        },
+                        lichtgroen: '#CDD9C5',
+                        beige: '#EBE6D9',
+                        charcoal: {
+                            DEFAULT: '#2C3531',
+                            muted: '#5A625E'
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Fredoka', 'cursive', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #EBE6D9; /* Novo Beige da brochura */
+            color: #2C3531;
+            font-family: 'Inter', sans-serif;
+        }
+    
+        /* Aplica a fonte Fredoka e a cor Donkergroen em todos os títulos */
+        h1, h2, h3, .font-heading {
+            font-family: 'Fredoka', cursive, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            color: #447568;
+        }
+    
+        /* Efeito de marcador de texto atualizado com as cores da brochura */
+        .highlight-marker {
+            background: linear-gradient(120deg, rgba(205, 217, 197, 0.9) 0%, rgba(68, 117, 104, 0.25) 100%);
+            display: inline-block;
+            padding: 0 0.2em;
+            border-radius: 0.15em;
+        }
+    
+        /* Estilo dos badges/pills atualizado */
+        .badge-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.35rem 0.85rem;
+            border-radius: 9999px;
+            font-size: 0.825rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            background-color: #CDD9C5; /* Lichtgroen */
+            color: #447568; /* Donkergroen */
+        }
+    </style>
+</head>
+<body class="bg-beige text-charcoal flex flex-col min-h-screen">
+
+    <!-- Announcement Bar (Barra Superior) -->
+    <div class="bg-donkergroen text-white text-center text-xs sm:text-sm py-2 px-4 font-medium tracking-wide">
+         Welkom bij Budgetcoach Eveline — <span class="underline cursor-pointer" onclick="openModal()">Boek een gratis en vrijblijvend intakegesprek van 30 min</span>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-beige/95 backdrop-blur-md border-b border-donkergroen/10 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                
+                <!-- Logo -->
+                <a href="#home" onclick="showTab('home')" class="flex items-center gap-3 group">
+                    <img src="EF_Logo_vfinal.png" alt="Budgetcoach Eveline Logo" class="h-16 w-16 rounded-full object-cover border-2 border-donkergroen/20 shadow-sm group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/100x100/447568/FFFFFF?text=EF'">
+                    <div class="flex flex-col">
+                        <span class="font-heading text-2xl font-bold tracking-wider text-donkergroen">BUDGETCOACH</span>
+                        <span class="text-xs uppercase tracking-widest text-donkergroen font-semibold -mt-1">Eveline</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden lg:flex items-center space-x-7 text-sm font-medium text-charcoal/90">
+                    <button onclick="showTab('diensten')" class="nav-btn hover:text-donkergroen transition-colors" data-tab="diensten">Wat is Budgetcoaching?</button>
+                    <button onclick="showTab('over-mij')" class="nav-btn hover:text-donkergroen transition-colors" data-tab="over-mij">Over Mij</button>
+                    <button onclick="showTab('organisaties')" class="nav-btn hover:text-donkergroen transition-colors" data-tab="organisaties">Voor Organisaties</button>
+                    <button onclick="showTab('tarieven')" class="nav-btn hover:text-donkergroen transition-colors" data-tab="tarieven">Tarieven</button>
+                    <button onclick="showTab('faq')" class="nav-btn hover:text-donkergroen transition-colors" data-tab="faq">FAQ</button>
+                    <button onclick="showTab('contact')" class="nav-btn hover:text-donkergroen transition-colors" data-tab="contact">Contact</button>
+                    <button onclick="showTab('print')" class="nav-btn hover:text-donkergroen transition-colors" data-tab="print">Printbare brochure</button>
+                </nav>
+  <!-- Header Action CTA -->
+  <div class="hidden sm:flex items-center gap-4">
+    <button onclick="openModal()" class="bg-donkergroen hover:bg-donkergroen-dark text-white px-5 py-2.5 rounded-full text-sm font-semibold shadow-md transition-all hover:shadow-lg transform hover:-translate-y-0.5">
+        Gratis gesprek
+    </button>
+</div>
+
+<!-- Mobile Menu Button -->
+<div class="lg:hidden flex items-center">
+    <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="p-2 rounded-md text-charcoal hover:text-donkergroen focus:outline-none">
+        <i data-lucide="menu" class="w-7 h-7"></i>
+    </button>
+</div>
+</div>
+</div>
+
+<!-- Mobile Menu Drawer -->
+<div id="mobileMenu" class="hidden lg:hidden bg-beige border-b border-donkergroen/20 px-4 pt-2 pb-6 space-y-3 shadow-xl">
+<button onclick="showTab('diensten'); toggleMobileMenu()" class="block w-full text-left py-2 px-3 rounded-lg text-base font-medium hover:bg-lichtgroen hover:text-donkergroen transition-colors">Wat is Budgetcoaching?</button>
+<button onclick="showTab('over-mij'); toggleMobileMenu()" class="block w-full text-left py-2 px-3 rounded-lg text-base font-medium hover:bg-lichtgroen hover:text-donkergroen transition-colors">Over Mij</button>
+<button onclick="showTab('organisaties'); toggleMobileMenu()" class="block w-full text-left py-2 px-3 rounded-lg text-base font-medium hover:bg-lichtgroen hover:text-donkergroen transition-colors">Voor Organisaties</button>
+<button onclick="showTab('tarieven'); toggleMobileMenu()" class="block w-full text-left py-2 px-3 rounded-lg text-base font-medium hover:bg-lichtgroen hover:text-donkergroen transition-colors">Tarieven</button>
+<button onclick="showTab('faq'); toggleMobileMenu()" class="block w-full text-left py-2 px-3 rounded-lg text-base font-medium hover:bg-lichtgroen hover:text-donkergroen transition-colors">Veelgestelde Vragen</button>
+<button onclick="showTab('contact'); toggleMobileMenu()" class="block w-full text-left py-2 px-3 rounded-lg text-base font-medium hover:bg-lichtgroen hover:text-donkergroen transition-colors">Contact</button>
+<button onclick="showTab('print'); toggleMobileMenu()" class="block w-full text-left py-2 px-3 rounded-lg text-base font-medium hover:bg-lichtgroen hover:text-donkergroen transition-colors">Printbare Brochure</button>
+<button onclick="openModal(); toggleMobileMenu()" class="w-full mt-2 bg-donkergroen hover:bg-donkergroen-dark text-white py-3 rounded-xl font-semibold shadow text-center transition-colors">
+Gratis kennismakingsgesprek
+</button>
+</div>
+</header>
+
+<main class="flex-grow">
+    <!-- TAB 1: HOME PAGE -->
+    <section id="tab-home" class="tab-content block">
+        
+        <!-- Hero Section -->
+        <div class="relative overflow-hidden pt-8 pb-16 lg:pt-16 lg:pb-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Left Hero Content -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="inline-flex items-center gap-2 bg-lichtgroen text-donkergroen px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase">
+                            <i data-lucide="sparkles" class="w-4 h-4 text-donkergroen"></i> Welzijn & Financiële Rust
+                        </div>
+                        
+                        <h1 class="font-heading text-3xl sm:text-4xl lg:text-[2.75rem] font-bold leading-tight text-donkergroen">
+                            Meer inzicht, <br>meer vertrouwen,<br>
+                            <span class="highlight-marker italic font-normal text-donkergroen">meer financiële rust.</span>
+                        </h1>
+
+                        <p class="text-lg text-charcoal-muted leading-relaxed max-w-2xl">
+                            Een praktisch en mensgericht coachingstraject. Samen maken we overzicht in je inkomsten en uitgaven, bouwen we aan financiële veerkracht en creëren we duurzame rust.
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                            <button onclick="openModal()" class="inline-flex justify-center items-center gap-2 bg-donkergroen hover:bg-donkergroen-dark text-white font-semibold px-8 py-4 rounded-full shadow-lg transition-all transform hover:-translate-y-0.5">
+                                <span>Plan gratis intakegesprek (30 min)</span>
+                                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                            </button>
+                            <button onclick="showTab('diensten')" class="inline-flex justify-center items-center gap-2 border-2 border-donkergroen text-donkergroen hover:bg-lichtgroen font-semibold px-8 py-4 rounded-full transition-all">
+                                <span>Ontdek het aanbod</span>
+                            </button>
+                        </div>
+
+                        <!-- Trust Badges -->
+                        <div class="pt-8 border-t border-donkergroen/15 grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs font-semibold text-charcoal/80">
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-donkergroen"></i> 100% Neutraal & Vertrouwelijk
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-donkergroen"></i> Geen oordeel, wel oplossingen
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-donkergroen"></i> Meertalig (NL, EN, FR, PT, ES)
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Hero Visual Grid -->
+                    <div class="lg:col-span-5 relative">
+                        <div class="relative mx-auto max-w-md lg:max-w-none">
+                            <div class="absolute -inset-4 bg-lichtgroen/40 rounded-3xl transform rotate-2"></div>
+                            <div class="relative bg-white p-3 rounded-3xl shadow-xl border border-donkergroen/10">
+                                <img src="home_img.jpg" alt="Duurzame financiële groei en sparen" class="w-full h-[420px] object-cover rounded-2xl" onerror="this.src='https://placehold.co/600x700/CDD9C5/447568?text=Budgetcoaching+Eveline'">
+                                
+                                <!-- Floating Card Badge -->
+                                <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl border border-donkergroen/10 max-w-xs flex items-center gap-3">
+                                    <div class="p-3 bg-lichtgroen text-donkergroen rounded-xl">
+                                        <i data-lucide="trending-up" class="w-6 h-6"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-charcoal-muted uppercase font-bold tracking-wider">Resultaat</p>
+                                        <p class="text-sm font-semibold text-charcoal">Rust & reservepotje</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Intro Section with Eveline's Photo -->
+        <section class="py-16 bg-white/60 border-y border-donkergroen/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
+                    <div class="md:col-span-4">
+                        <div class="relative rounded-2xl overflow-hidden shadow-lg border-2 border-donkergroen/20">
+                            <img src="Eveline.jpg" alt="Eveline - Budgetcoach" class="w-full h-80 sm:h-96 object-cover object-top" onerror="this.src='https://placehold.co/500x600/447568/FFFFFF?text=Eveline'">
+                            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-charcoal/80 to-transparent p-4 text-white">
+                                <p class="font-heading text-xl font-bold">Eveline</p>
+                                <p class="text-xs opacity-90">Gecertificeerd Budgetcoach & Jurist</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:col-span-8 space-y-4">
+                        <span class="badge-pill bg-lichtgroen text-donkergroen">Wie ben ik?</span>
+                        <h2 class="font-heading text-3xl sm:text-4xl font-bold text-donkergroen">"Geldzorgen wegnemen brengt ruimte voor wat echt telt."</h2>
+                        <p class="text-charcoal-muted leading-relaxed">
+                            Mijn naam is Eveline. Met mijn juridische achtergrond (Bachelor Rechten) en verdiepingsopleiding tot budgetcoach aan de Thomas More Hogeschool help ik mensen weer controle te krijgen over hun financiën. Geen ingewikkelde theorieën, maar een menselijke, empathische en actiegerichte aanpak.
+                        </p>
+                        <div class="pt-2">
+                            <button onclick="showTab('over-mij')" class="inline-flex items-center gap-2 text-donkergroen font-bold hover:underline transition-colors">
+                                Lees mijn volledige verhaal <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4 Vision Pillars -->
+        <section class="py-20 bg-beige">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="badge-pill bg-lichtgroen text-donkergroen mb-3">Onze Pijlers</span>
+                    <h2 class="font-heading text-3xl sm:text-4xl font-bold text-donkergroen">De 4 pijlers van een gezonde financiële toekomst</h2>
+                    <p class="text-charcoal-muted mt-3">Samen bouwen we aan een fundament dat rust en zelfvertrouwen geeft op lange termijn.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Pillar 1 -->
+                    <div class="bg-white p-8 rounded-2xl border border-donkergroen/10 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-lichtgroen text-donkergroen rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="wallet" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-donkergroen mb-3">1. Leren omgaan met geld</h3>
+                        <p class="text-sm text-charcoal-muted leading-relaxed">
+                            Inzicht krijgen in je inkomsten, vaste kosten en dagelijkse uitgaven. Een realistisch budget opstellen dat wél werkt voor jou.
+                        </p>
+                    </div>
+
+                    <!-- Pillar 2 -->
+                    <div class="bg-white p-8 rounded-2xl border border-donkergroen/10 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-lichtgroen text-donkergroen rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="laptop" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-donkergroen mb-3">2. Digitale zelfredzaamheid</h3>
+                        <p class="text-sm text-charcoal-muted leading-relaxed">
+                            Veilig en overzichtelijk je bank-apps, digitale facturen en administratie beheren in een steeds snellere digitale wereld.
+                        </p>
+                    </div>
+
+                    <!-- Pillar 3 -->
+                    <div class="bg-white p-8 rounded-2xl border border-donkergroen/10 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-lichtgroen text-donkergroen rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-donkergroen mb-3">3. Welzijn & Veerkracht</h3>
+                        <p class="text-sm text-charcoal-muted leading-relaxed">
+                            Financiële stress aanpakken om mentale rust te herstellen. Goede gewoontes opbouwen die op lange termijn blijven werken.
+                        </p>
+                    </div>
+
+                    <!-- Pillar 4 -->
+                    <div class="bg-white p-8 rounded-2xl border border-donkergroen/10 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-lichtgroen text-donkergroen rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="compass" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-donkergroen mb-3">4. Bewuste keuzes maken</h3>
+                        <p class="text-sm text-charcoal-muted leading-relaxed">
+                            Duurzame keuzes maken die bij jouw passen en dromen voor de toekomst.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick CTA Band -->
+        <div class="bg-donkergroen text-white py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+                <div>
+                    <h3 class="font-heading text-2xl sm:text-3xl font-bold">Klaar voor de eerste stap naar financiële rust?</h3>
+                    <p class="text-beige/80 text-sm mt-1">Gratis vrijblijvend intakegesprek van 30 minuten online of telefonisch.</p>
+                </div>
+                <button onclick="openModal()" class="bg-white text-donkergroen hover:bg-lichtgroen px-8 py-3.5 rounded-full font-semibold shadow-lg whitespace-nowrap transition-all">
+                    Boek je gesprek
+                </button>
+            </div>
+        </div>
+    </section>
+       <!-- TAB 2: WAT IS BUDGETCOACHING -->
+       <section id="tab-diensten" class="tab-content hidden py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="badge-pill bg-lichtgroen text-donkergroen mb-3">Onze Diensten</span>
+                <h1 class="font-heading text-4xl sm:text-5xl font-bold text-donkergroen mb-4">Wat is Budgetcoaching?</h1>
+                <p class="text-lg text-charcoal-muted">
+                    Budgetcoaching is een preventieve ondersteuning om jouw financiën (weer) overzichtelijk en gezond te maken.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-20">
+                <div class="lg:col-span-6 space-y-6">
+                    <h2 class="font-heading text-3xl font-bold text-donkergroen">Structuur en overzicht in je dagelijkse administratie</h2>
+                    <p class="text-charcoal-muted leading-relaxed">
+                        Als budgetcoach ondersteun ik je bij het op orde brengen en houden van jouw geldzaken. We kijken samen naar waar het geld naartoe gaat, waar besparingen mogelijk zijn en hoe je buffers kunt opbouwen.
+                    </p>
+
+                    <div class="space-y-3 pt-2">
+                        <div class="flex items-start gap-3">
+                            <div class="p-1 bg-lichtgroen text-donkergroen rounded-full mt-1"><i data-lucide="check" class="w-4 h-4"></i></div>
+                            <div>
+                                <strong class="text-charcoal">Budgetoverzicht (maandelijks) & budgetplan (jaarlijks):</strong> Precies weten wat er binnenkomt en weggaat.
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="p-1 bg-lichtgroen text-donkergroen rounded-full mt-1"><i data-lucide="check" class="w-4 h-4"></i></div>
+                            <div>
+                                <strong class="text-charcoal">Bespaartips & abonnementen-check:</strong> Niet meer betalen dan nodig.
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="p-1 bg-lichtgroen text-donkergroen rounded-full mt-1"><i data-lucide="check" class="w-4 h-4"></i></div>
+                            <div>
+                                <strong class="text-charcoal">Aflossingsplannen & buffers:</strong> Veilig sparen en schulden voorkomen.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6">
+                    <div class="rounded-3xl overflow-hidden shadow-xl border-4 border-white">
+                        <img src="home_img_2.jpg" alt="Overzichtelijk budget en financieel overzicht op laptop" class="w-full h-96 object-cover" onerror="this.src='https://placehold.co/600x400/447568/FFFFFF?text=Budget+Overzicht'">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3 Main Service Cards -->
+            <h3 class="font-heading text-3xl font-bold text-center text-donkergroen mb-10">Mogelijkheden van Begeleiding</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+                <!-- Card 1 -->
+                <div class="bg-white p-8 rounded-2xl border border-donkergroen/10 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-lichtgroen text-donkergroen rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="users" class="w-6 h-6"></i>
+                        </div>
+                        <h4 class="font-heading text-2xl font-bold text-donkergroen mb-3">Geldcafés</h4>
+                        <p class="text-sm text-charcoal-muted leading-relaxed mb-6">
+                            Informele inloopmomenten in groepsverband waar je vragen kunt stellen over rekeningen, brieven of budgetteren. In een veilige en gastvrije sfeer.
+                        </p>
+                    </div>
+                    <button onclick="openModal()" class="w-full py-3 bg-beige hover:bg-lichtgroen text-donkergroen font-semibold rounded-xl text-sm transition-colors border border-donkergroen/20">
+                        Informatie aanvragen
+                    </button>
+                </div>
+
+                <!-- Card 2 (Popular Card) -->
+                <div class="bg-white p-8 rounded-2xl border-2 border-donkergroen shadow-md flex flex-col justify-between relative">
+                    <div class="absolute -top-3 right-6 bg-donkergroen text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                        Populair
+                    </div>
+                    <div>
+                        <div class="w-12 h-12 bg-lichtgroen text-donkergroen rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="presentation" class="w-6 h-6"></i>
+                        </div>
+                        <h4 class="font-heading text-2xl font-bold text-donkergroen mb-3">Thematische Workshops</h4>
+                        <p class="text-sm text-charcoal-muted leading-relaxed mb-6">
+                            Praktische sessies over specifieke onderwerpen zoals "(E-)administratie", "Leren budgetteren", "Sparen en besparen" of "Digitale vaardigheden rond geldzaken".
+                        </p>
+                    </div>
+                    <button onclick="openModal()" class="w-full py-3 bg-donkergroen hover:bg-donkergroen-dark text-white font-semibold rounded-xl text-sm transition-colors">
+                        Bekijk/Boek Workshop
+                    </button>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white p-8 rounded-2xl border border-donkergroen/10 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-lichtgroen text-donkergroen rounded-xl flex items-center justify-center mb-6">
+                            <i data-lucide="user-check" class="w-6 h-6"></i>
+                        </div>
+                        <h4 class="font-heading text-2xl font-bold text-donkergroen mb-3">Individuele Begeleiding</h4>
+                        <p class="text-sm text-charcoal-muted leading-relaxed mb-6">
+                            1-op-1 coaching afgestemd op jouw persönliche gezinssituatie en behoeften. Op locatie of online.
+                        </p>
+                    </div>
+                    <button onclick="openModal()" class="w-full py-3 bg-beige hover:bg-lichtgroen text-donkergroen font-semibold rounded-xl text-sm transition-colors border border-donkergroen/20">
+                        Aanmelden voor coaching
+                    </button>
+                </div>
+            </div>
+
+            <!-- Voor wie section -->
+            <div class="bg-lichtgroen/40 p-8 sm:p-12 rounded-3xl border border-donkergroen/20">
+                <h3 class="font-heading text-3xl font-bold text-donkergroen text-center mb-8">Voor Wie Is Budgetcoaching Geschikt?</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-donkergroen/10">
+                        <h4 class="font-heading text-xl font-bold text-donkergroen mb-3 flex items-center gap-2">
+                            <i data-lucide="user" class="text-donkergroen"></i> Voor Particulieren
+                        </h4>
+                        <ul class="space-y-2 text-sm text-charcoal-muted">
+                            <li>• Bij verandering in het leven (alleen gaan wonen, scheiding, overlijden, pensioen)</li>
+                            <li>• Voor wie meer wil kunnen sparen voor de toekomst</li>
+                            <li>• Om geldtekort en schuld te voorkomen</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-donkergroen/10">
+                        <h4 class="font-heading text-xl font-bold text-donkergroen mb-3 flex items-center gap-2">
+                            <i data-lucide="building-2" class="text-donkergroen"></i> Voor Organisaties & Besturen
+                        </h4>
+                        <ul class="space-y-2 text-sm text-charcoal-muted">
+                            <li>• Bij inzet van financiële educatie</li>
+                            <li>• Voor het financiële welzijn van medewerkers of burgers</li>
+                            <li>• Om verzuim te voorkomen</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+        <!-- TAB 3: OVER MIJ -->
+        <section id="tab-over-mij" class="tab-content hidden py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                    
+                    <!-- Left Photo & Quick Highlights -->
+                    <div class="lg:col-span-5 space-y-6 lg:sticky lg:top-28">
+                        <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+                            <img src="Eveline.jpg" alt="Budgetcoach Eveline Portrait" class="w-full h-[480px] object-cover object-top" onerror="this.src='https://placehold.co/600x700/4A7A6D/FFFFFF?text=Eveline'">
+                        </div>
+
+                        <!-- Languages Supported Badges -->
+                        <div class="bg-white p-6 rounded-2xl border border-sage/10 shadow-sm space-y-3">
+                            <h4 class="font-serif text-lg font-bold text-charcoal">Talen waarin begeleiding mogelijk is:</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-sage-light text-sage-dark font-semibold text-xs rounded-full">🇳🇱 Nederlands</span>
+                                <span class="px-3 py-1 bg-sage-light text-sage-dark font-semibold text-xs rounded-full">🇬🇧 English</span>
+                                <span class="px-3 py-1 bg-sage-light text-sage-dark font-semibold text-xs rounded-full">🇫🇷 Français</span>
+                                <span class="px-3 py-1 bg-sage-light text-sage-dark font-semibold text-xs rounded-full">🇵🇹 Português</span>
+                                <span class="px-3 py-1 bg-sage-light text-sage-dark font-semibold text-xs rounded-full">🇪🇸 Español</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Bio & Story Content -->
+                    <div class="lg:col-span-7 space-y-8">
+                        <div>
+                            <span class="badge-pill bg-terracotta-light text-terracotta mb-3">Mijn Achtergrond</span>
+                            <h1 class="font-serif text-4xl sm:text-5xl font-bold text-charcoal mb-4">Hallo, ik ben Eveline.</h1>
+                            <p class="text-lg text-sage-dark font-medium italic">
+                                "Mijn passie is om financiële en vraagstukken te vertalen naar duidelijke, haalbare stappen voor iedereen."
+                            </p>
+                        </div>
+
+                        <div class="space-y-4 text-charcoal-muted leading-relaxed">
+                            <p>
+                                Dankzij mijn werkervaringen bij BIZ (Budget in Zicht) en Groep INTRO, ontdekte ik dat veel mensen niet vastlopen door een gebrek aan wilskracht, maar door een gebrek aan overzicht, ingewikkelde administratie en onvoorziene levensgebeurtenissen.
+                            </p>
+                            <p>
+                                Om een zo grondig en professioneel mogelijke ondersteuning te bieden, heb ik de gespecialiseerde opleiding tot **Budgetcoach** gevolgd aan de **Thomas More Hogeschool**.
+                            </p>
+                            <p>
+                                Mijn benadering is **preventief, discreet en no-nonsense**. Geen opgeheven vinger, maar een gelijkwaardige samenwerking waarin we samen een systeem opzetten dat bij jóu past.
+                            </p>
+                        </div>
+
+                        <!-- Key Academic / Professional Highlights -->
+                        <div class="bg-cream-soft p-6 rounded-2xl border border-sage/15 space-y-4">
+                            <h3 class="font-serif text-2xl font-bold text-charcoal">Kwalificaties & Ervaring</h3>
+                            
+                            <div class="space-y-3 text-sm">
+                                <div class="flex items-start gap-3">
+                                    <i data-lucide="graduation-cap" class="w-5 h-5 text-terracotta flex-shrink-0 mt-0.5"></i>
+                                    <div>
+                                        <strong>Thomas More Hogeschool:</strong> Certificaat Budgetcoach
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <i data-lucide="award" class="w-5 h-5 text-terracotta flex-shrink-0 mt-0.5"></i>
+                                    <div>
+                                        <strong>Bachelor Rechten:</strong> Grondige kennis van contracten, rechten en verplichtingen
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <i data-lucide="building" class="w-5 h-5 text-terracotta flex-shrink-0 mt-0.5"></i>
+                                    <div>
+                                        <strong>Ervaring in de sector:</strong> Jobcoach bij OCMW'S (ism Groep INTRO) en educatief medewerker bij BIZ (Budget in Zicht)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-4">
+                            <button onclick="openModal()" class="bg-donkergroen hover:bg-donkergroen-dark text-white px-8 py-4 rounded-full font-semibold shadow-lg transition-all">
+                                Maak vrijblijvend kennis met Eveline
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TAB 4: VOOR ORGANISATIES -->
+        <section id="tab-organisaties" class="tab-content hidden py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="badge-pill bg-terracotta-light text-terracotta mb-3">Zakelijk & Maatschappelijk</span>
+                    <h1 class="font-serif text-4xl sm:text-5xl font-bold text-charcoal mb-4">Voor Organisaties & Besturen</h1>
+                    <p class="text-lg text-charcoal-muted">
+                        Investeer in de financiële veerkracht van uw medewerkers of burgers. Preventieve budgetcoaching vermindert verzuim, verhoogt welzijn en versterkt de zelfredzaamheid.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
+                    <div class="lg:col-span-6">
+                        <img src="home_img_3.jpg" alt="Presentatie financieel inzicht in gestructureerde workshop" class="w-full h-[400px] object-cover rounded-3xl shadow-xl border-4 border-white" onerror="this.src='https://placehold.co/600x400/4A7A6D/FFFFFF?text=Workshops+Organisaties'">
+                    </div>
+                    <div class="lg:col-span-6 space-y-6">
+                        <h2 class="font-serif text-3xl font-bold text-sage-dark">Waarom inzetten op financiële gezondheid?</h2>
+                        <p class="text-charcoal-muted leading-relaxed">
+                            Financiële stress heeft een directe invloed op de werkplek en het dagelijks functioneren. Door laagdrempelige workshops of inloopspreekuren aan te bieden, helpt u problemen te voorkomen vóór ze escaleren.
+                        </p>
+                        
+                        <div class="space-y-3">
+                            <div class="bg-white p-4 rounded-xl border border-sage/10 shadow-sm flex items-center gap-3">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-terracotta"></i>
+                                <span class="font-medium text-sm">Vermindering van ziekteverzuim en stress op de werkvloer</span>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl border border-sage/10 shadow-sm flex items-center gap-3">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-terracotta"></i>
+                                <span class="font-medium text-sm">Verhoogde digitale en financiële geletterdheid</span>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl border border-sage/10 shadow-sm flex items-center gap-3">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-terracotta"></i>
+                                <span class="font-medium text-sm">Flexibel aanbod op maat van uw organisatie of gemeente</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modulair Aanbod -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-2xl border border-sage/10 shadow-sm">
+                        <div class="text-terracotta font-bold text-xs uppercase tracking-widest mb-2">Module A</div>
+                        <h3 class="font-serif text-2xl font-bold mb-3">Geldcafé op Locatie</h3>
+                        <p class="text-sm text-charcoal-muted leading-relaxed">
+                            Opzet en begeleiding van informele inloopspreekuren in wijkcentra, bedrijven of welzijns organisaties.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl border border-sage/10 shadow-sm">
+                        <div class="text-terracotta font-bold text-xs uppercase tracking-widest mb-2">Module B</div>
+                        <h3 class="font-serif text-2xl font-bold mb-3">Interactieve Workshops</h3>
+                        <p class="text-sm text-charcoal-muted leading-relaxed">
+                            Omgaan met (e-) administratie, Leren Budgetteren & Slim omgaan met geld.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl border border-sage/10 shadow-sm">
+                        <div class="text-terracotta font-bold text-xs uppercase tracking-widest mb-2">Module C</div>
+                        <h3 class="font-serif text-2xl font-bold mb-3">1-op-1 Trajecten Werknemers of Burgers</h3>
+                        <p class="text-sm text-charcoal-muted leading-relaxed">
+                            Anonieme en vertrouwelijke individuele budgetcoaching als onderdeel van uw HR-plan of welzijnsbeleidsplan.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-12 text-center">
+                    <button onclick="openModal()" class="bg-sage hover:bg-sage-hover text-white px-8 py-4 rounded-full font-semibold shadow-lg transition-all">
+                        Vraag een offerte of voorstel op maat aan
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TAB 5: TARIEVEN -->
+        <section id="tab-tarieven" class="tab-content hidden py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="badge-pill bg-sage-light text-sage-dark mb-3">Transparantie</span>
+                    <h1 class="font-serif text-4xl sm:text-5xl font-bold text-charcoal mb-4">Duidelijke en Eerlijke Tarieven</h1>
+                    <p class="text-lg text-charcoal-muted">
+                        Geen verrassingen of verborgen kosten achteraf. Het intakegesprek is altijd 100% gratis en vrijblijvend.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    
+                    <!-- Particulieren Pricing Card -->
+                    <div class="bg-white p-8 rounded-3xl border-2 border-sage shadow-md flex flex-col justify-between">
+                        <div>
+                            <div class="inline-block px-3 py-1 bg-sage-light text-sage-dark text-xs font-bold rounded-full mb-4">
+                                Particulieren
+                            </div>
+                            <h3 class="font-serif text-3xl font-bold text-charcoal mb-2">Individuele Coaching</h3>
+                            <p class="text-sm text-charcoal-muted mb-6">Persoonlijke coaching op maat voor jou of je gezin.</p>
+                            
+                            <div class="mb-6">
+                                <span class="font-serif text-4xl font-bold text-sage-dark">Gratis</span>
+                                <span class="text-sm text-charcoal-muted"> / Intakegesprek (30 min)</span>
+                            </div>
+
+                            <ul class="space-y-3 text-sm text-charcoal-muted border-t border-sage/10 pt-6 mb-8">
+                                <li class="flex items-center gap-2"><i data-lucide="check" class="text-sage w-4 h-4"></i> Vrijblijvende analyse van je zorgvraag</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check" class="text-sage w-4 h-4"></i> Vervolgsessies aan transparant uur- of pakkettarief</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check" class="text-sage w-4 h-4"></i> Inclusief opgesteld jaar-budgetoverzicht</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check" class="text-sage w-4 h-4"></i> Online of op locatie</li>
+                            </ul>
+                        </div>
+
+                        <button onclick="openModal()" class="w-full py-4 bg-sage hover:bg-sage-hover text-white rounded-xl font-semibold shadow transition-colors">
+                            Plan gratis intake
+                        </button>
+                    </div>
+
+                    <!-- Organisaties Pricing Card -->
+                    <div class="bg-white p-8 rounded-3xl border border-sage/20 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="inline-block px-3 py-1 bg-terracotta-light text-terracotta text-xs font-bold rounded-full mb-4">
+                                Organisaties & Besturen
+                            </div>
+                            <h3 class="font-serif text-3xl font-bold text-charcoal mb-2">Workshops & Geldcafés</h3>
+                            <p class="text-sm text-charcoal-muted mb-6">Groepssessies, inloopspreekuren en HR-trajecten.</p>
+
+                            <div class="mb-6">
+                                <span class="font-serif text-4xl font-bold text-charcoal">Op Maat</span>
+                                <span class="text-sm text-charcoal-muted"> / per project of dagdeel</span>
+                            </div>
+
+                            <ul class="space-y-3 text-sm text-charcoal-muted border-t border-sage/10 pt-6 mb-8">
+                                <li class="flex items-center gap-2"><i data-lucide="check" class="text-terracotta w-4 h-4"></i> Workshops van 2 uur à 3 uur</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check" class="text-terracotta w-4 h-4"></i> Mogelijkheid tot het aanschaffen van digitaal en fysiek materiaal</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check" class="text-terracotta w-4 h-4"></i> Opzet en moderatie van Geldcafé</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check" class="text-terracotta w-4 h-4"></i> Meertalige documentatie beschikbaar</li>
+                            </ul>
+                        </div>
+
+                        <button onclick="openModal()" class="w-full py-4 bg-cream-soft hover:bg-sage-light text-sage-dark border border-sage/20 rounded-xl font-semibold transition-colors">
+                            Offerte aanvragen
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TAB 6: FAQ -->
+        <section id="tab-faq" class="tab-content hidden py-16">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center mb-16">
+                    <span class="badge-pill bg-sage-light text-sage-dark mb-3">Vragen?</span>
+                    <h1 class="font-serif text-4xl sm:text-5xl font-bold text-charcoal mb-4">Veelgestelde Vragen</h1>
+                    <p class="text-charcoal-muted">Hier vind je antwoorden op de meest gestelde vragen over budgetcoaching.</p>
+                </div>
+
+                <div class="space-y-4">
+                    
+                    <!-- FAQ 1 -->
+                    <div class="bg-white rounded-2xl border border-sage/10 overflow-hidden shadow-sm">
+                        <button onclick="toggleFaq('faq-1')" class="w-full p-6 text-left font-serif text-xl font-bold text-charcoal flex justify-between items-center hover:bg-cream-soft transition-colors">
+                            <span>Wat is het verschil tussen een budgetcoach en schuldhulpverlening?</span>
+                            <i id="icon-faq-1" data-lucide="chevron-down" class="w-5 h-5 text-sage transform transition-transform"></i>
+                        </button>
+                        <div id="faq-1" class="hidden px-6 pb-6 text-charcoal-muted text-sm leading-relaxed border-t border-sage/5 pt-4">
+                            Een budgetcoach werkt voornamelijk **preventief en coachend**. Ik help je om structuur aan te brengen en te voorkomen dat je in problematische schulden raakt. Schuldhulpverlening is een formeel juridisch traject wanneer er reeds zware, onbeheersbare schulden zijn.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="bg-white rounded-2xl border border-sage/10 overflow-hidden shadow-sm">
+                        <button onclick="toggleFaq('faq-2')" class="w-full p-6 text-left font-serif text-xl font-bold text-charcoal flex justify-between items-center hover:bg-cream-soft transition-colors">
+                            <span>Neem jij mijn bankrekening of geldbeheer over?</span>
+                            <i id="icon-faq-2" data-lucide="chevron-down" class="w-5 h-5 text-sage transform transition-transform"></i>
+                        </button>
+                        <div id="faq-2" class="hidden px-6 pb-6 text-charcoal-muted text-sm leading-relaxed border-t border-sage/5 pt-4">
+                            **Nee, absoluut niet.** Jij blijft op elk moment 100% baas over jouw eigen geld en bankrekening. Als budgetcoach geef ik advies, inzicht en hulpmiddelen, maar jij neemt zelf alle beslissingen.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="bg-white rounded-2xl border border-sage/10 overflow-hidden shadow-sm">
+                        <button onclick="toggleFaq('faq-3')" class="w-full p-6 text-left font-serif text-xl font-bold text-charcoal flex justify-between items-center hover:bg-cream-soft transition-colors">
+                            <span>Hoe verlopen de sessies?</span>
+                            <i id="icon-faq-3" data-lucide="chevron-down" class="w-5 h-5 text-sage transform transition-transform"></i>
+                        </button>
+                        <div id="faq-3" class="hidden px-6 pb-6 text-charcoal-muted text-sm leading-relaxed border-t border-sage/5 pt-4">
+                            We beginnen steeds met een gratis telefonische of online intake van 30 minuten. Daarna plannen we afspraken in die bij jou passen: dit kan online of op locatie.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 4 -->
+                    <div class="bg-white rounded-2xl border border-sage/10 overflow-hidden shadow-sm">
+                        <button onclick="toggleFaq('faq-4')" class="w-full p-6 text-left font-serif text-xl font-bold text-charcoal flex justify-between items-center hover:bg-cream-soft transition-colors">
+                            <span>In welke talen kan de begeleiding plaatsvinden?</span>
+                            <i id="icon-faq-4" data-lucide="chevron-down" class="w-5 h-5 text-sage transform transition-transform"></i>
+                        </button>
+                        <div id="faq-4" class="hidden px-6 pb-6 text-charcoal-muted text-sm leading-relaxed border-t border-sage/5 pt-4">
+                            Begeleiding en coaching kan vlot verzorgd worden in het **Nederlands, Engels, Frans, Portugees en Spaans**.
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TAB 7: CONTACT -->
+        <section id="tab-contact" class="tab-content hidden py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="badge-pill bg-terracotta-light text-terracotta mb-3">Neem Contact Op</span>
+                    <h1 class="font-serif text-4xl sm:text-5xl font-bold text-charcoal mb-4">Laten we praten.</h1>
+                    <p class="text-lg text-charcoal-muted">
+                        Heb je vragen of wil je direct een intakegesprek inplannen? Vul het formulier in of bereik me rechtstreeks via WhatsApp of mail.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+           <!-- Direct Contact Details -->
+<div class="lg:col-span-5 space-y-8">
+    <div class="bg-white p-8 rounded-3xl border border-sage/10 shadow-sm space-y-6">
+        <h3 class="font-serif text-2xl font-bold text-sage-dark">Contactgegevens</h3>
+
+        <div class="space-y-4 text-sm text-charcoal-muted">
+            <div class="flex items-center gap-4">
+                <div class="p-3 bg-sage-light text-sage-dark rounded-xl">
+                    <i data-lucide="map-pin" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <p class="font-semibold text-charcoal">Locatie</p>
+                    <p>Brussel, België</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <div class="p-3 bg-sage-light text-sage-dark rounded-xl">
+                    <i data-lucide="mail" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <p class="font-semibold text-charcoal">E-mail</p>
+                    <a href="mailto:budgetcoacheveline@gmail.com?subject=Via%20website%20Budgetcoach%20Eveline" class="hover:text-sage transition-colors">
+                        budgetcoacheveline@gmail.com
+                    </a>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <div class="p-3 bg-terracotta-light text-terracotta rounded-xl">
+                    <i data-lucide="phone" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <p class="font-semibold text-charcoal">Telefoon & WhatsApp</p>
+                    <a href="https://wa.me/32492484937" target="_blank" rel="noopener noreferrer" class="hover:text-terracotta transition-colors">
+                        +32 492 48 49 37
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="pt-4 border-t border-sage/10 text-xs text-charcoal-muted">
+            <p><strong>BTW NR:</strong> BE 0785.402.466</p>
+            <p class="mt-1">Reactie binnen 48 werkuren.</p>
+        </div>
+    </div>
+</div>
+                   <!-- Contact Form -->
+<div class="lg:col-span-7">
+    <form onsubmit="handleFormSubmit(event)" class="bg-white p-8 sm:p-10 rounded-3xl border border-sage/10 shadow-sm space-y-6">
+        <h3 class="font-serif text-2xl font-bold text-charcoal">Stuur direct een bericht</h3>
+        
+        <!-- Configurações do Web3Forms -->
+        <input type="hidden" name="access_key" value="93a5d8c1-8cc9-4128-a5ab-2d866ceb995a">
+        <input type="hidden" name="subject" value="Nieuw bericht via het contactformulier">
+        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+                <label class="block text-xs font-bold uppercase text-charcoal-muted mb-2">Voornaam & Naam *</label>
+                <input type="text" name="naam" required class="w-full px-4 py-3 rounded-xl border border-sage/20 focus:outline-none focus:border-sage bg-cream-soft text-sm">
+            </div>
+            <div>
+                <label class="block text-xs font-bold uppercase text-charcoal-muted mb-2">E-mailadres *</label>
+                <input type="email" name="email" required class="w-full px-4 py-3 rounded-xl border border-sage/20 focus:outline-none focus:border-sage bg-cream-soft text-sm">
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+                <label class="block text-xs font-bold uppercase text-charcoal-muted mb-2">Telefoonnummer</label>
+                <input type="tel" name="telefoonnummer" class="w-full px-4 py-3 rounded-xl border border-sage/20 focus:outline-none focus:border-sage bg-cream-soft text-sm">
+            </div>
+            <div>
+                <label class="block text-xs font-bold uppercase text-charcoal-muted mb-2">Type Onderwerp</label>
+                <select name="onderwerp" class="w-full px-4 py-3 rounded-xl border border-sage/20 focus:outline-none focus:border-sage bg-cream-soft text-sm">
+                    <option value="Gratis Intakegesprek (30 min)">Gratis Intakegesprek (30 min)</option>
+                    <option value="Individuele Coaching">Individuele Coaching</option>
+                    <option value="Aanbod voor Organisaties / Workshops">Aanbod voor Organisaties / Workshops</option>
+                    <option value="Geldcafé Informatie">Geldcafé Informatie</option>
+                    <option value="Overige vraag">Overige vraag</option>
+                </select>
+            </div>
+        </div>
+
+        <div>
+            <label class="block text-xs font-bold uppercase text-charcoal-muted mb-2">Jouw Bericht of Vraag *</label>
+            <textarea name="bericht" rows="4" required class="w-full px-4 py-3 rounded-xl border border-sage/20 focus:outline-none focus:border-sage bg-cream-soft text-sm" placeholder="Vertel kort waar ik je mee kan helpen..."></textarea>
+        </div>
+
+        <button type="submit" class="w-full py-4 bg-terracotta hover:bg-terracotta-dark text-white rounded-xl font-semibold shadow-lg transition-all text-sm">
+            Verzenden
+        </button>
+    </form>
+</div>
+</div>
+</section>
+
+<!-- TAB 8: Print -->
+<section id="tab-print" class="tab-content hidden py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Header da Seção -->
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="badge-pill bg-terracotta-light text-terracotta mb-3">Printbare Brochure</span>
+            <h1 class="font-serif text-4xl sm:text-5xl font-bold text-charcoal mb-4">Informatiegids & Tarieven</h1>
+            <p class="text-lg text-charcoal-muted">
+                Download de brochure in PDF-formaat voor een overzicht van mijn diensten, tarieven en contactinformatie. Perfect om te delen of af te drukken.
+            </p>
+        </div>
+
+        <!-- Bloco do Cartão da Brochure -->
+        <div class="max-w-2xl mx-auto bg-white p-8 sm:p-10 rounded-3xl border border-sage/10 shadow-sm text-center space-y-6">
+            <div class="w-16 h-16 bg-sage-light text-sage-dark rounded-2xl flex items-center justify-center mx-auto">
+                <i data-lucide="file-text" class="w-8 h-8"></i>
+            </div>
+
+            <div class="space-y-2">
+                <h3 class="font-serif text-2xl font-bold text-charcoal">Brochure Budgetcoach Eveline</h3>
+                <p class="text-sm text-charcoal-muted">PDF-document • Geoptimaliseerd voor A4-afdruk</p>
+            </div>
+
+            <!-- Botões de Ação -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                <a href="brochure-budgetcoach.pdf" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="w-full sm:w-auto px-6 py-3.5 bg-terracotta hover:bg-terracotta-dark text-white rounded-xl font-semibold shadow-md transition-all text-sm flex items-center justify-center gap-2">
+                    <i data-lucide="printer" class="w-4 h-4"></i>
+                    <span>Bekijken & Afdrukken</span>
+                </a>
+
+                <a href="brochure-budgetcoach.pdf" 
+                   download="Brochure-Budgetcoach-Eveline.pdf" 
+                   class="w-full sm:w-auto px-6 py-3.5 bg-sage-light text-sage-dark hover:bg-sage/20 rounded-xl font-semibold transition-all text-sm flex items-center justify-center gap-2">
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    <span>Direct Downloaden</span>
+                </a>
+            </div>
+
+            <p class="text-xs text-charcoal-muted pt-2 border-t border-sage/10">
+                Tip: Kies bij het afdrukken voor "Aanpassen aan pagina" (Fit to page) voor het beste resultaat.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+   <!-- Booking / Contact Modal -->
+<div id="bookingModal" class="fixed inset-0 bg-charcoal/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-8 relative shadow-2xl border border-sage/20 max-h-[90vh] overflow-y-auto">
+        <button onclick="closeModal()" class="absolute top-6 right-6 text-charcoal-muted hover:text-charcoal p-1">
+            <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+
+        <div class="text-center space-y-2 mb-6">
+            <img src="EF_Logo_vfinal.png" alt="Logo" class="w-16 h-16 mx-auto rounded-full object-cover border border-sage/20" onerror="this.src='https://placehold.co/100x100/4A7A6D/FFFFFF?text=EF'">
+            <h3 class="font-serif text-2xl font-bold text-charcoal">Gratis Intakegesprek Boeken</h3>
+            <p class="text-xs text-charcoal-muted">Kies jouw voorkeur. Ik neem binnen 48 uur contact met je op.</p>
+        </div>
+
+        <form onsubmit="handleModalSubmit(event)" class="space-y-4">
+            <!-- Configurações do Web3Forms -->
+            <input type="hidden" name="access_key" value="93a5d8c1-8cc9-4128-a5ab-2d866ceb995a">
+            <input type="hidden" name="subject" value="Nieuwe aanvraag: Gratis Intakegesprek">
+            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+            <div>
+                <label class="block text-xs font-bold uppercase text-charcoal-muted mb-1">Naam *</label>
+                <input type="text" name="naam" required class="w-full px-4 py-2.5 rounded-xl border border-sage/20 focus:outline-none focus:border-sage bg-cream-soft text-sm">
+            </div>
+            <div>
+                <label class="block text-xs font-bold uppercase text-charcoal-muted mb-1">E-mail *</label>
+                <input type="email" name="email" required class="w-full px-4 py-2.5 rounded-xl border border-sage/20 focus:outline-none focus:border-sage bg-cream-soft text-sm">
+            </div>
+            <div>
+                <label class="block text-xs font-bold uppercase text-charcoal-muted mb-1">Telefoonnummer *</label>
+                <input type="tel" name="telefoonnummer" required class="w-full px-4 py-2.5 rounded-xl border border-sage/20 focus:outline-none focus:border-sage bg-cream-soft text-sm">
+            </div>
+            <div>
+                <label class="block text-xs font-bold uppercase text-charcoal-muted mb-1">Voorkeur Gespreksvorm</label>
+                <select name="voorkeur_gesprek" class="w-full px-4 py-2.5 rounded-xl border border-sage/20 focus:outline-none focus:border-sage bg-cream-soft text-sm">
+                    <option value="Telefonisch">Telefonisch</option>
+                    <option value="Online (Video Call)">Online (Video Call)</option>
+                </select>
+            </div>
+            <button type="submit" class="w-full py-3.5 bg-sage hover:bg-sage-hover text-white rounded-xl font-semibold text-sm shadow transition-all mt-4">
+                Aanvraag Bevestigen
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- Footer com Visual da Brochura e Conteúdo do Site -->
+<footer class="bg-beige pt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Conteúdo Principal do Rodapé (Colunas) -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 text-charcoal">
+            
+            <!-- Coluna 1: Logo & Informações -->
+            <div class="md:col-span-5 space-y-4">
+                <div class="flex items-center gap-3">
+                    <img src="EF_Logo_vfinal.png" alt="Budgetcoach Eveline Logo" class="h-12 w-12 rounded-full border border-donkergroen/20 object-cover" onerror="this.src='https://placehold.co/100x100/447568/FFFFFF?text=EF'">
+                    <span class="font-heading text-xl sm:text-2xl font-bold tracking-wider text-donkergroen">BUDGETCOACH EVELINE</span>
+                </div>
+                <p class="text-xs text-charcoal-muted leading-relaxed max-w-sm">
+                    Ondersteuning voor particulieren en organisaties om financiële rust en overzicht te creëren op een menselijke manier.
+                </p>
+                <p class="text-xs font-semibold text-donkergroen">BTW BE 0785.402.466</p>
+            </div>
+
+            <!-- Coluna 2: Navigatie -->
+            <div class="md:col-span-3 space-y-3 text-xs">
+                <h4 class="font-heading text-base font-bold text-donkergroen uppercase tracking-wider">Navigatie</h4>
+                <ul class="space-y-2 text-charcoal-muted font-medium">
+                    <li><button onclick="showTab('home')" class="hover:text-donkergroen transition-colors">Home</button></li>
+                    <li><button onclick="showTab('diensten')" class="hover:text-donkergroen transition-colors">Wat is Budgetcoaching?</button></li>
+                    <li><button onclick="showTab('over-mij')" class="hover:text-donkergroen transition-colors">Over Mij</button></li>
+                    <li><button onclick="showTab('organisaties')" class="hover:text-donkergroen transition-colors">Voor Organisaties</button></li>
+                    <li><button onclick="showTab('tarieven')" class="hover:text-donkergroen transition-colors">Tarieven</button></li>
+                    <li><button onclick="showTab('faq')" class="hover:text-donkergroen transition-colors">Veelgestelde Vragen</button></li>
+                    <li><button onclick="showTab('print')" class="hover:text-donkergroen transition-colors">Printbare Brochure</button></li>
+                </ul>
+            </div>
+
+            <!-- Coluna 3: Talen & Ervaring + CTA -->
+            <div class="md:col-span-4 space-y-3 text-xs">
+                <h4 class="font-heading text-base font-bold text-donkergroen uppercase tracking-wider">Talen & Ervaring</h4>
+                <p class="text-charcoal-muted leading-relaxed">Gecertificeerd Budgetcoach (Thomas More Hogeschool) & Bachelor Rechten.</p>
+                <p class="text-charcoal-muted leading-relaxed">Dienstverlening in NL, EN, FR, PT, ES.</p>
+                <div class="pt-2">
+                    <button onclick="openModal()" class="px-5 py-2.5 bg-donkergroen hover:bg-donkergroen-dark text-white rounded-full font-semibold transition-all shadow-sm">
+                        Boek een afspraak
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Faixa Inferior Verde Escuro (Banner de Contacto no estilo Brochura) -->
+    <div class="bg-donkergroen text-white py-6 px-4 text-center">
+        <div class="max-w-4xl mx-auto space-y-2">
+            <h4 class="font-heading text-sm sm:text-base font-bold tracking-wide">
+                NEEM GERUST CONTACT OP VOOR EEN VRIJBLIJVEND GESPREK
+            </h4>
+            
+            <p class="text-xs text-lichtgroen font-medium flex flex-wrap justify-center items-center gap-2 sm:gap-4">
+                <a href="mailto:budgetcoacheveline@gmail.com" class="hover:underline">budgetcoacheveline@gmail.com</a>
+                <span>•</span>
+                <a href="tel:0492484937" class="hover:underline">0492 48 49 37</a>
+            </p>
+
+            <div class="pt-3 border-t border-white/10 text-[10px] text-white/50">
+                © <span id="year"></span> Budgetcoach Eveline. Alle rechten voorbehouden.
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Single Page Tab Navigation
+        function showTab(tabId) {
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.add('hidden'));
+
+            const selectedTab = document.getElementById('tab-' + tabId);
+            if (selectedTab) {
+                selectedTab.classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Update desktop active navigation styling
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                if (btn.getAttribute('data-tab') === tabId) {
+                    btn.classList.add('text-sage-dark', 'font-bold', 'border-b-2', 'border-sage');
+                } else {
+                    btn.classList.remove('text-sage-dark', 'font-bold', 'border-b-2', 'border-sage');
+                }
+            });
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // FAQ Accordion Toggle
+        function toggleFaq(faqId) {
+            const el = document.getElementById(faqId);
+            const icon = document.getElementById('icon-' + faqId);
+            if (el) {
+                el.classList.toggle('hidden');
+                if (icon) {
+                    icon.classList.toggle('rotate-180');
+                }
+            }
+        }
+
+        // Modal Controls
+        function openModal() {
+            document.getElementById('bookingModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('bookingModal').classList.add('hidden');
+        }
+
+        // Web3Forms Submit Handler Generico
+        async function sendFormToWeb3Forms(event, successText, originalClass, successClass, onSuccessCallback = null) {
+            event.preventDefault();
+            const form = event.target;
+            const btn = form.querySelector('button[type="submit"]');
+            const originalText = btn.textContent;
+
+            // Feedback visual de carregamento
+            btn.disabled = true;
+            btn.textContent = "Verzenden...";
+
+            try {
+                const formData = new FormData(form);
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    btn.textContent = successText;
+                    btn.classList.remove(originalClass);
+                    btn.classList.add(successClass);
+                    form.reset();
+
+                    if (onSuccessCallback) {
+                        setTimeout(onSuccessCallback, 2000);
+                    }
+                } else {
+                    btn.textContent = "Fout bij verzenden. Probeer opnieuw.";
+                    btn.disabled = false;
+                    setTimeout(() => { btn.textContent = originalText; }, 3000);
+                }
+            } catch (error) {
+                btn.textContent = "Netwerkfout. Probeer opnieuw.";
+                btn.disabled = false;
+                setTimeout(() => { btn.textContent = originalText; }, 3000);
+            }
+        }
+
+        // Form Submit Contact Page
+        function handleFormSubmit(e) {
+            sendFormToWeb3Forms(
+                e, 
+                "Bericht verzonden! Ik neem snel contact op.", 
+                "bg-terracotta", 
+                "bg-sage-dark"
+            );
+        }
+
+        // Form Submit Modal
+        function handleModalSubmit(e) {
+            sendFormToWeb3Forms(
+                e, 
+                "Aanvraag ontvangen!", 
+                "bg-sage", 
+                "bg-sage-dark", 
+                closeModal
+            );
+        }
+
+        // Set initial tab
+        showTab('home');
+    </script>
+</body>
+</html>
